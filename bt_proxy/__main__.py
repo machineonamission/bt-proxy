@@ -104,7 +104,7 @@ async def async_main(args: argparse.Namespace) -> None:
     )
 
     # Register mDNS
-    zc, service_info = await register_mdns(args.name, args.port, machine_mac)
+    zc, service_info = await register_mdns(args.name, args.port, bt_mac)
 
     # Start BLE scanning
     await ble_manager.start_scanning()
