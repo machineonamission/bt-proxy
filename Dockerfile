@@ -5,7 +5,6 @@ RUN apt-get update && \
         bluez \
         dbus \
         libdbus-1-3 \
-        libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
