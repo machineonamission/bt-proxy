@@ -416,6 +416,7 @@ class APIConnection:
         fields = proto.decode_fields(data)
         mode = proto.get_field_varint(fields, 1)
         active = mode == proto.SCANNER_MODE_ACTIVE
+        logger.info(f"api asked to change ble mode to {active}")
         await self.server.ble_manager.set_scan_mode(active)
 
     async def _handle_subscribe_logs(self, _data: bytes) -> None:

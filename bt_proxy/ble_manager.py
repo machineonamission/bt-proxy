@@ -358,6 +358,9 @@ class BLEManager:
             await self.stop_scanning()
             await self.start_scanning()
 
+        logger.info(f"ble mode is now {self._scan_active}")
+
+
     def _handle_disconnect(self, address: int) -> None:
         """Internal disconnect handler."""
         conn = self._connections.pop(address, None)
