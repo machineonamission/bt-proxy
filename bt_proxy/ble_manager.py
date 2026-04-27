@@ -6,7 +6,8 @@ import asyncio
 import logging
 from typing import Any, Callable
 
-from bleak import BleakClient, BleakScanner
+from bleak import BleakClient, BleakScanner, BlueZScannerArgs
+from bleak.args.bluez import OrPattern
 from bleak.backends.characteristic import BleakGATTCharacteristic
 from bleak.backends.device import BLEDevice
 from bleak.backends.scanner import AdvertisementData
@@ -323,6 +324,12 @@ class BLEManager:
             "detection_callback": self._detection_callback,
             "scanning_mode": "active" if self._scan_active else "passive",
         }
+        if not self._scan_active:
+            # Bleak on Linux requires 'or_patterns' to allow passive scanning.
+            # Passing an empty payload pattern acts as a generic catch-all.
+            kwargs["bluez"] = BlueZScannerArgs(
+                or_patterns=[OrPattern(0, 0x01, b"")]
+            )
         if self._adapter:
             kwargs["adapter"] = self._adapter
 
