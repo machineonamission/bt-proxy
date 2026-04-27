@@ -43,6 +43,7 @@ uv run python -m bt_proxy
 | `--max-connections` | `3` | Max concurrent BLE GATT connections |
 | `--adapter` | system default | Bluetooth adapter (e.g. `hci0`) |
 | `--log-level` | `INFO` | Logging verbosity |
+| `--active` | `True` | Enable active scanning |
 
 ### Example
 
