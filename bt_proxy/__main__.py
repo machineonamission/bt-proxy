@@ -92,6 +92,7 @@ async def async_main(args: argparse.Namespace) -> None:
     ble_manager = BLEManager(
         max_connections=args.max_connections,
         adapter=args.adapter,
+        active=args.active
     )
 
     server = APIServer(
@@ -139,6 +140,11 @@ def main() -> None:
         "--name",
         default="bt-proxy",
         help="Device name (default: bt-proxy)",
+    )
+    parser.add_argument(
+        "--active",
+        default=True,
+        help="Enable active scanning (default: True)",
     )
     parser.add_argument(
         "--friendly-name",

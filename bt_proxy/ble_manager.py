@@ -245,13 +245,13 @@ def _bleak_props_to_int(properties: list[str]) -> int:
 class BLEManager:
     """Manages BLE scanning and active connections."""
 
-    def __init__(self, max_connections: int = 3, adapter: str | None = None):
+    def __init__(self, max_connections: int = 3, adapter: str | None = None, active: bool = True):
         self.max_connections = max_connections
         self._adapter = adapter
         self._connections: dict[int, BLEConnection] = {}
         self._connecting: set[int] = set()
         self._scanner: BleakScanner | None = None
-        self._scan_active = True
+        self._scan_active = active
         self._scanning = False
         self._adv_callback: Callable[
             [int, int, int, bytes], None
